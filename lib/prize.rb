@@ -7,7 +7,7 @@ class Prize
   
   def initialize(treasures, level)
     @treasures=treasures
-    @level=level 
+    @level=level
   end
   
   def to_s 
