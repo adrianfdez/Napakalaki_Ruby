@@ -1,14 +1,14 @@
 # To change this license header, choose License Headers in Project Properties.
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
-#encoding: utf-8
+# encoding: utf-8
 
 monsters = Array.new
 
-BadConsquence bad_consequence = BadConsequence.new_level_specific_treasures(
+bad_consequence = BadConsequence.new_level_specific_treasures(
 'Pierdes tu armadura visible y otra oculta', 
 0, [TreasureKind::ARMOR], [TreasureKind::ARMOR])
-Prize price = Prize.new(2,1)
+price = Prize.new(2,1)
 monsters << Monster.new('3 Byakhees de bonanza', 8, bad_consequence, price)
 
 bad_consequence = BadConsequence.new_level_specific_treasures(
@@ -28,13 +28,13 @@ bad_consequence = BadConsequence.new_level_specific_treasures(
 Descarta 1 mano visible y 1 mano oculta',
 0, [TreasureKind::ONE_HAND], [TreasureKind::ONE_HAND])
 price = Prize.new(4,1)
-monsters << Monster.new('Ángeles de la noche ibicenca', 14, bad_consequence, price)
+monsters << Monster.new('Angeles de la noche ibicenca', 14, bad_consequence, price)
 
 bad_consequence = BadConsequence.new_level_number_of_treasures(
 'Pierdes todos tus tesoros visibles', 
 0, 10000, 0)
 price = Prize.new(3,1)
-monsters << Monster.new('El gorrón en el umbral', 10, bad_consequence, price)
+monsters << Monster.new('El gorron en el umbral', 10, bad_consequence, price)
 
 bad_consequence = BadConsequence.new_level_specific_treasures(
 'Pierdes la armadura visible',
@@ -124,7 +124,7 @@ monsters << Monster.new('Bicefalo', 20, bad_consequence, price) ;
 def monstruos_fuertes(monsters)           
   m_fuertes = Array.new 
     
-  monsters.each{|m| 
+  monsters.each{ |m| 
     if m.combat_level > 10
       then m_fuertes << m 
     end
@@ -133,21 +133,42 @@ def monstruos_fuertes(monsters)
     
 end
    
-
-def monstruos_mal_rollo(monsters) 
-  m_malrollo = Array.new 
-    
-  monsters.each{|m|
-    if (m_malrollo.bc.someVisibleTreasures)== 0  or (m_malrollo.bc.someSpecificVisibleTreasures).empty? == true
-      if (m_malrollo.bc.someHiddenTreasures)== 0 or (m_malrollo.bc.someSpecificHiddenTreasures).empty? == true 
-        then m_malrollo << m 
-      end
-    end 
+def monstruos_perdida_niveles(monsters)
+  perdida_niveles = Array.new
+  
+  monsters.each{ |m|
+    if perdida_niveles.bc.levels > 0
+      then perdida_niveles << m
+    end
   }
-  puts m_fuertes 
+  puts perdida_niveles
+  
+end
+
+
+def monstruos_buen_rollo(monsters)
+  m_buenrollo = Array.new
+  
+  monsters.each{ |m| 
+    if m_buenrollo.price.level > 1
+      then m_buenrollo << m
+    end
+  }
+  puts m_buenrollo
     
 end
 
 
+def monstruos_mal_rollo(monsters) 
+  m_malrollo = Array.new 
+    
+  monsters.each{ |m|
+    if (m_malrollo.bc.someVisibleTreasures)== 0  or (m_malrollo.bc.someSpecificVisibleTreasures).empty? == true
+      if (m_malrollo.bc.some_hidden_reasures)== 0 or (m_malrollo.bc.someSpecificHiddenTreasures).empty? == true 
+        then m_malrollo << m 
+      end
+    end 
+  }
+  puts m_malrollo
 
-
+end
