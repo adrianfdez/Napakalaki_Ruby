@@ -3,7 +3,7 @@
 # and open the template in the editor.
 
 class BadConsequence
-  attr.accesor :text, :levels, :n_visible_treasures, :n_hidden_treasures, 
+  attr_accesor :text, :levels, :n_visible_treasures, :n_hidden_treasures, 
     :someSpecificVisibleTreasures, :someSpecificHiddenTreasures, :death
   private_class_method :new
   

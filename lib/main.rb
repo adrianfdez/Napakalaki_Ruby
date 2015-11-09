@@ -1,7 +1,10 @@
-# To change this license header, choose License Headers in Project Properties.
-# To change this template file, choose Tools | Templates
-# and open the template in the editor.
+
 # encoding: utf-8
+
+require "BadConsequence.rb"
+require "Monster.rb"
+require "Prize.rb"
+require "treasure_kind.rb"
 
 monsters = Array.new
 
@@ -74,7 +77,7 @@ monsters << Monster.new('Semillas Cthulhu', 4, bad_consequence, price) ;
     
 bad_consequence = BadConsequence.new_level_specific_treasures(
 'Te intentas escaquear.Pierdes una mano visible.',
-0, [TreasureKind::ONEHAND], [] );
+0, [TreasureKind::ONE_HAND], [] );
 price = Prize.new(2,1) ;
 monsters <<  Monster.new('Dameargo', 1, bad_consequence, price) ;
     
@@ -98,7 +101,7 @@ monsters << Monster.new('Familia feliz', 1, bad_consequence, price) ;
     
 bad_consequence = BadConsequence.new_level_specific_treasures(
 'La quinta directiva primaria te obliga a perder 2 niveles y un tesoro 2 manos visible.',
-2, [TreasureKind::BOTHHAND], []) ;
+2, [TreasureKind::BOTH_HAND], []) ;
 price = Prize.new(2,1) ;
 monsters << Monster.new('Roboggoth', 8, bad_consequence, price) ;
     
@@ -116,7 +119,7 @@ monsters << Monster.new('El Lenguas', 20, bad_consequence, price) ;
     
 bad_consequence = BadConsequence.new_level_specific_treasures(
 'Te faltan manos para tanta cabeza.Pierdes 3 niveles y tus tesoros visibles de las manos',
-3, [TreasureKind::ONEHAND, TreasureKind::ONEHAND], [TreasureKind::BOTHHAND]) ;
+3, [TreasureKind::ONE_HAND, TreasureKind::ONE_HAND], [TreasureKind::BOTH_HAND]) ;
 price = Prize.new(1,1);
 monsters << Monster.new('Bicefalo', 20, bad_consequence, price) ;      
     
